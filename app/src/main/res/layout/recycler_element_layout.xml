@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/moutainImageView"
+        android:id="@+id/mountainImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/moutainImageView"
+        app:layout_constraintEnd_toEndOf="@+id/mountainImageView"
         app:layout_constraintHorizontal_bias="0.594"
-        app:layout_constraintStart_toStartOf="@+id/moutainImageView"
-        app:layout_constraintTop_toBottomOf="@+id/moutainImageView"
+        app:layout_constraintStart_toStartOf="@+id/mountainImageView"
+        app:layout_constraintTop_toBottomOf="@+id/mountainImageView"
         tools:text="Description" />
 </androidx.constraintlayout.widget.ConstraintLayout>
