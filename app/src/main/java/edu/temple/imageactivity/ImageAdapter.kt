@@ -26,9 +26,12 @@ class ImageAdapter (val _context : Context, _ImageObjects : Array<ImageObject>, 
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        holder.imageView.setImageResource(this.ImageObjects[position].resourceID)
+        val imageObject = this.ImageObjects[position]
+        holder.imageView.setImageResource(imageObject.resourceID)
+        holder.imageView.contentDescription = imageObject.description
         holder.imageView.setOnClickListener(onClickListener)
-        holder.imageObject = this.ImageObjects[position]
+
+
     }
 
     override fun getItemCount(): Int {

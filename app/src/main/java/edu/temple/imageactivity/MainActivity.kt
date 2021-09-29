@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
                 val thisView = view as ImageView
                 // use selected item to pick the right image object
                 selectedImageView.setImageDrawable(view.drawable)
+                selectedDescriptorView.text = thisView.contentDescription
             }
         }
 
