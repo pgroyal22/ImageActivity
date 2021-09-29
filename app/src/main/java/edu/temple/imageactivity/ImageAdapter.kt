@@ -1,21 +1,37 @@
 package edu.temple.imageactivity
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ImageAdapter (val _context : Context, _ImageObjects : Array<ImageObject>, onItemSelectedListener: AdapterView.OnItemSelectedListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        TODO("Not yet implemented")
+class ImageViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    val imageView : ImageView = view.findViewById(R.id.mountainImageView)
+    lateinit var imageObject : ImageObject
+}
+
+class ImageAdapter (val _context : Context, _ImageObjects : Array<ImageObject>, _onClickListener: View.OnClickListener) : RecyclerView.Adapter<ImageViewHolder>() {
+    private val ImageObjects : Array<ImageObject> = _ImageObjects
+    val onClickListener = _onClickListener
+
+
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ImageViewHolder {
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.recycler_element_layout, viewGroup, false)
+        return ImageViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+        holder.imageView.setImageResource(this.ImageObjects[position].resourceID)
+        holder.imageView.setOnClickListener(onClickListener)
+        holder.imageObject = this.ImageObjects[position]
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return this.ImageObjects.size
     }
 }

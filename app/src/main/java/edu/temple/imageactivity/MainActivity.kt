@@ -1,11 +1,14 @@
 package edu.temple.imageactivity
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -31,17 +34,31 @@ class MainActivity : AppCompatActivity() {
         val selectedDescriptorView = findViewById<TextView>(R.id.selectedImageDescriptionView)
         val selectedImageView = findViewById<ImageView>(R.id.selectedImageView)
 
-        val itemSelectedListener =  object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, ID:  Long) {
-                // finds whatever parent triggered the event
-                val imageObject = parent?.getItemAtPosition(position) as ImageObject
-                selectedImageView.setImageResource(imageObject.resourceID)
-                selectedDescriptorView.text = imageObject.description
-            }
+        selectedDescriptorView.text = "Mount Rainier"
+        selectedImageView.setImageResource(R.drawable.rainier)
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
+        val onClickListener = object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                // finds whatever parent triggered the event
+                val thisView = view as ImageView
+                // use selected item to pick the right image object
+                selectedImageView.setImageDrawable(view.drawable)
             }
         }
-        recycler.adapter = ImageAdapter(this, imageObjects, itemSelectedListener)
+
+//        val itemSelectedListener =  object : AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, ID:  Long) {
+//                // finds whatever parent triggered the event
+//                val imageObject = parent?.getItemAtPosition(position) as ImageObject
+//                selectedImageView.setImageResource(imageObject.resourceID)
+//                selectedDescriptorView.text = imageObject.description
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+////                val imageObject = imageObjects[0]
+////                selectedImageView.setImageResource(imageObject.resourceID)
+////                selectedDescriptorView.text = imageObject.description
+//            }
+        recycler.adapter = ImageAdapter(this, imageObjects, onClickListener)
     }
 }
